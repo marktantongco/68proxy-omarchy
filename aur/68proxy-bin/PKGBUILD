@@ -1,0 +1,28 @@
+# Maintainer: Mark Anthony Tantongco <mark@example.com>
+# 68proxy-bin - Prebuilt binary, no Rust compile needed (fast install for Omarchy)
+pkgname=68proxy-bin
+pkgver=1.1.0
+pkgrel=1
+pkgdesc="Local reverse proxy + protocol gateway - OpenAI/Anthropic -> Command Code - Prebuilt binary for Omarchy (English)"
+arch=('x86_64')
+url="https://github.com/evanfu0110/68proxy"
+license=('MIT')
+depends=('webkit2gtk-4.1' 'gtk3' 'libsoup3' 'librsvg' 'libayatana-appindicator' 'hicolor-icon-theme' 'openssl' 'javascriptcoregtk-4.1')
+provides=('68proxy')
+conflicts=('68proxy')
+optdepends=('xdg-utils: open config folder')
+# NOTE: Replace marktantongco with your GitHub username after first release
+# The binary is built by .github/workflows/build-omarchy.yml on tag push
+source=(
+  "68proxy-${pkgver}::https://github.com/marktantongco/68proxy-omarchy/releases/download/v${pkgver}/68proxy"
+  "68proxy.desktop"
+  "128x128.png::https://raw.githubusercontent.com/evanfu0110/68proxy/main/src-tauri/icons/128x128.png"
+)
+sha256sums=('SKIP' 'SKIP' 'SKIP')
+
+package() {
+  install -Dm755 "68proxy-${pkgver}" "$pkgdir/usr/bin/68proxy"
+  install -Dm644 "68proxy.desktop" "$pkgdir/usr/share/applications/68proxy.desktop"
+  install -Dm644 "128x128.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/68proxy.png"
+  install -Dm644 "128x128.png" "$pkgdir/usr/share/icons/hicolor/32x32/apps/68proxy.png" 2>/dev/null || true
+}

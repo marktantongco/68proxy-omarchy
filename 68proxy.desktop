@@ -1,0 +1,21 @@
+[Desktop Entry]
+Name=68proxy
+GenericName=Protocol Gateway
+Comment=Local reverse proxy + protocol gateway - OpenAI / Anthropic compatible for Command Code
+Exec=68proxy %U
+Icon=68proxy
+Terminal=false
+Type=Application
+Categories=Development;Network;Utility;
+StartupWMClass=68proxy
+Keywords=proxy;openai;anthropic;llm;ai;gateway;commandcode;cursor;cherrystudio;
+MimeType=x-scheme-handler-68proxy;
+Actions=Config;Logs;
+
+[Desktop Action Config]
+Name=Open Config Folder
+Exec=xdg-open ~/.config/68proxy
+
+[Desktop Action Logs]
+Name=Open Logs Folder
+Exec=xdg-open ~/.config/68proxy/logs
